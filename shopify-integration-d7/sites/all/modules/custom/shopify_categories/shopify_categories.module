@@ -1,0 +1,51 @@
+<?php
+/**
+ *
+ * This is the class for handling all the shopify integrations
+ * The category management is based on the following key attribute
+ *
+ * Metafield
+ * - if the collection is not a base collection, there will be a custom metafield stored called
+ * TopTierCollections
+ * - the non-base collection also contains a custom metafield called sub-collections, this is a
+ * comma delimited list of collection ids
+ * - the non-base collection also contains a metafield called cms-key, this is the drupal content ID
+ *
+ *
+ *
+ */
+include_once('shopify_categories.permissions.inc');
+include_once('shopify_categories.core.inc');
+
+//override menu hook
+/**
+ * Implementation of hook_menu().
+ */
+function shopify_categories_menu() {
+
+    $items = array();
+
+    $items['admin/settings/shopify/multi-collection-management'] = array(
+        'title' => 'Manage Shopify Nested Collections',
+        'description' => 'Administer Shopify Nested Collections',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('shopify_categories_settings'),
+        'access arguments' => array('administer shopify shop'),
+        'file' => 'shopify_categories.admin.inc',
+    );
+
+    $items['call-back-processes/shopify/sync-collections'] = array(
+        'title' => 'Manage Shopify Nested Collections',
+        'description' => 'Administer Shopify Nested Collections',
+        'page callback' => 'shopify_categories_sync',
+        'access arguments' => array('administer shopify shop'),
+    );
+
+
+    return $items;
+}
+
+
+
+
+?>
