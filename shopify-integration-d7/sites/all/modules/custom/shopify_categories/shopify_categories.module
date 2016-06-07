@@ -15,6 +15,7 @@
  *
  */
 include_once('shopify_categories.permissions.inc');
+include_once('lib/CollectionUtil.php');
 include_once('shopify_categories.core.inc');
 
 //override menu hook

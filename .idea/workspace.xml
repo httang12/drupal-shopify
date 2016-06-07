@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="428f031b-dff6-4d91-8250-654ab867d9d0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.admin.inc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.permissions.inc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/lib/CollectionUtil.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc" afterPath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module" afterPath="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module" />
     </list>
     <ignored path="drupal-shopify.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +30,8 @@
       <file leaf-file-name="shopify_categories.module" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -47,12 +47,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shopify_categories.core.inc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shopify_categories.core.inc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+            <state relative-caret-position="226">
+              <caret line="170" column="49" selection-start-line="170" selection-start-column="49" selection-end-line="170" selection-end-column="49" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollectionUtil.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/lib/CollectionUtil.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
+              <folding>
+                <element signature="e#6#90#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +72,7 @@
       <file leaf-file-name="shopify.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/libraries/shopify/shopify.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
+            <state relative-caret-position="1035">
               <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
               <folding />
             </state>
@@ -80,8 +92,8 @@
       <file leaf-file-name="shopify_categories.admin.inc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.admin.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
+            <state relative-caret-position="465">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -97,9 +109,10 @@
       <list>
         <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.permissions.inc" />
         <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.admin.inc" />
-        <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module" />
         <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/libraries/shopify/shopify.php" />
+        <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module" />
         <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc" />
+        <option value="$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/lib/CollectionUtil.php" />
       </list>
     </option>
   </component>
@@ -289,6 +302,44 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="custom" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopify_categories" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drupal-shopify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drupal-shopify" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopify-integration-d7" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="libraries" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -330,6 +381,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ajlikeswatches-inc-95919559" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -378,12 +430,13 @@
       <updated>1464030529376</updated>
       <workItem from="1464030530530" duration="2509000" />
       <workItem from="1464704635923" duration="7880000" />
-      <workItem from="1464876696976" duration="11257000" />
+      <workItem from="1464876696976" duration="23543000" />
+      <workItem from="1465313616845" duration="4589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21646000" />
+    <option name="totallyTimeSpent" value="38521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1260" height="672" extended-state="0" />
@@ -426,6 +479,64 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/lib/CollectionUtil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/libraries/shopify/shopify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.permissions.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.admin.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -442,8 +553,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.admin.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
+        <state relative-caret-position="465">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -456,6 +567,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/libraries/shopify/shopify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.info">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -464,27 +583,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/libraries/shopify/shopify.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="15">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/shopify_categories.core.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+        <state relative-caret-position="226">
+          <caret line="170" column="49" selection-start-line="170" selection-start-column="49" selection-end-line="170" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopify-integration-d7/sites/all/modules/custom/shopify_categories/lib/CollectionUtil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

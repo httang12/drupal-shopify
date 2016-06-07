@@ -5,8 +5,52 @@ DEFINE('shopify_categories_drupal_key','DrupalKey');
 DEFINE('shopify_categories_namespace','hmtrevolution');
 DEFINE('shopify_categories_subcategories_key','drupal-sub-categories-list');
 DEFINE('shopify_categories_homecategories_key','is-drupal-home-category');
+DEFINE('shopify_categories_pagesize',250);
 
+/**
+ * sync shopify collections with the
+ */
+function shopify_categories_sync()
+{
+    shopify_categories_push();
+    return "<h3>Configurations and Collections are now sync'd.</h3>";
+}
 
+/**
+ * function hook into node save mechanism to update shopify
+ * @param $node
+ */
+function shopify_categories_node_insert($node)
+{
+    if ($node->type = 'subcategory')
+    {
+        shopify_categories_createNewCollection($node);
+    }
+}
+
+/**
+ * function hook into node update mechanism
+ * @param $node
+ */
+function shopify_categories_node_update($node)
+{
+    if ($node->type = 'subcategory')
+    {
+        shopify_categories_updateCollection($node);
+    }
+}
+
+/**
+ * function hook into node delete mechanism
+ * @param $node
+ */
+function shopify_categories_node_delete($node)
+{
+    if ($node->type = 'subcategory')
+    {
+        shopify_categories_deleteCollection($node);
+    }
+}
 //function to push category configuration to shopify!!!
 function shopify_categories_push()
 {
@@ -17,18 +61,16 @@ function shopify_categories_push()
     //drupal ID is the value, shopify ID is the key
     $nonBaseCollections = shopify_categories_getNonBaseCollections();
 
-
     //start the update process
     //loop through the entity for all
     //this script will set the default value for location content type, run it as one time process only.
     $content_type = 'subcategory';
 
-
-
     $nodes = node_load_multiple(array(), array('type' => $content_type));
     foreach ($nodes as $node) {
         $node_wrapper = entity_metadata_wrapper('node', $node);
         //check if the node is going to be create or update
+
         $newCollection = true;
         if (in_array($node_wrapper->getIdentifier(),$nonBaseCollections)===true)
         {
@@ -63,56 +105,6 @@ function shopify_categories_cleanShopifyCollections()
     }
 }
 
-function shopify_categories_createNewCollection(&$node)
-{
-    //initialize the client object
-    $client = shopify_api_client();
-    $node_wrapper = entity_metadata_wrapper('node',$node);
-
-    $nodeID = $node_wrapper->getIdentifier();
-    $nodetitle = $node_wrapper->label();
-    $nodebody = $node_wrapper->body->raw();
-
-    $isHomeCategory = $node_wrapper->field_home_page_collection->raw();
-
-    //set string for metadata
-    if ($isHomeCategory == 0)
-        $isHomeCategory = 'yes';
-    else
-        $isHomeCategory = 'no';
-    //aggregation of all categories
-    $subcategoryIDs = '';
-    $rawimgpath = $node_wrapper->field_sub_categories_image->value()['uri'];
-    $imagePath = file_create_url($rawimgpath);
-    $imagePath = str_replace("/","\/" ,$imagePath);
-
-    $postData = array('custom_collection' =>
-        array(
-            'title' => $nodetitle,
-            'body' => $nodebody,
-
-            //this only works if the drupal instance is available publically.
-            //'image' => array('src' => $imagePath),
-
-            'metafields' => array(
-                array('key'=>shopify_categories_drupal_key,'value'=>$nodeID,'value_type'=>'string','namespace'=>shopify_categories_namespace),
-                array('key'=>shopify_categories_customcategory_key,'value'=>'yes','value_type'=>'string','namespace'=>shopify_categories_namespace),
-                array('key'=>shopify_categories_homecategories_key,'value'=>$isHomeCategory,'value_type'=>'string','namespace'=>shopify_categories_namespace),
-            )
-        )
-    );
-
-
-    $collection_results = $client->call('POST', '/admin/custom_collections.json', $postData);
-    //the id is returned if successful
-    $collectionShopifyID = $collection_results['id'];
-    //save the id back into the node
-
-    $node_wrapper->field_shopify_collection_id->set($collectionShopifyID);
-    node_save($node);
-
-
-}
 
 /**
  * this is performed after all new collections are added and created properly
@@ -123,34 +115,25 @@ function shopify_categories_syncCateogryLinks()
 
 }
 
-/**
- * sync shopify collections with the
- */
-function shopify_categories_sync()
-{
-    shopify_categories_push();
-    return "<h3>Configurations and Collections are now sync'd.</h3>";
-}
-
 function shopify_categories_getNonBaseCollections()
 {
     $nonbase_collections = array();
 
     //query shopify to get the base collections
     //initialize the client object
-    $client = shopify_api_client();
-    $collection_results = $client->call('GET', '/admin/custom_collections.json', array('limit' => 250, 'fields' => 'id, metafield, title'));
-
-    //print_r($collection_results);die;
+    //query shopify to get the base collections
+    $collection_results = shopify_categories_getCollections();
 
     foreach($collection_results as $collection) {
         $collectionID = $collection['id'];
         $collectionTitle = $collection['title'];
+        
+        $metaDatas = shopify_categories_getMetaFieldsByCollectionID($collectionID);
+
         $isBaseCategory = true;
         $drupalID = '';
 
-        if (array_key_exists('metafields',$collection))
-            $metaDatas = $collection['metafields'];
+
         if(isset($metaDatas))
             foreach($metaDatas as $metafield)
             {
@@ -171,6 +154,44 @@ function shopify_categories_getNonBaseCollections()
 }
 
 /**
+ * Core function to retrieve all collections, support collection count more than 250
+ *
+ * @return array
+ * @throws ShopifyApiException
+ */
+function shopify_categories_getCollections()
+{
+    //initialize the client object
+    $client = shopify_api_client();
+
+    $overallResults = array();
+    $total_pages = shopify_categories_getCustomCollectionCount()/shopify_categories_pagesize;
+    $total_pages = ceil($total_pages);
+
+    $total_smartPages = shopify_categories_getSmartCollectionCount()/shopify_categories_pagesize;
+    $total_smartPages = ceil($total_smartPages);
+
+    $countIndex = 1;
+    while($countIndex<=$total_pages)
+    {
+        $collection_results = $client->call('GET', '/admin/custom_collections.json', array('limit' => shopify_categories_pagesize, 'page'=>$countIndex ,'fields' => 'id, title'));
+        $overallResults = array_merge($overallResults,$collection_results);
+        $countIndex++;
+    }
+
+    $countIndex = 1;
+    while($countIndex<=$total_smartPages)
+    {
+        $collection_results = $client->call('GET', '/admin/smart_collections.json', array('limit' => shopify_categories_pagesize, 'page'=>$countIndex ,'fields' => 'id, title'));
+        $overallResults = array_merge($overallResults,$collection_results);
+        $countIndex++;
+    }
+
+    return $overallResults;
+}
+
+
+/**
  * get the base collections for shopify system
  */
 function shopify_categories_getBaseCollections()
@@ -178,37 +199,54 @@ function shopify_categories_getBaseCollections()
     $base_collections = array();
 
     //query shopify to get the base collections
-    //initialize the client object
-    $client = shopify_api_client();
-    $collection_results = $client->call('GET', '/admin/custom_collections.json', array('limit' => 250, 'fields' => 'id, metafield, title'));
-
-    //print_r($collection_results);die;
+    $collection_results = shopify_categories_getCollections();
 
     foreach($collection_results as $collection) {
         $collectionID = $collection['id'];
         $collectionTitle = $collection['title'];
         $isBaseCategory = true;
 
-
-        if (array_key_exists('metafields',$collection))
-            $metaDatas = $collection['metafields'];
-        if(isset($metaDatas))
-            foreach($metaDatas as $metafield)
-            {
-                if($metafield['key']==shopify_categories_customcategory_key)
-                {
-                    $isBaseCategory = false;
-                    break;
-                }
-            }
-        if ($isBaseCategory)
-        {
-            $base_collections[$collectionID] = $collectionTitle;
-        }
+        $base_collections[$collectionID] = $collectionTitle;
 
     }
     return $base_collections;
 }
 
+/**
+ * Get the metal field of a collection
+ * @param $collectionID
+ * @return array
+ * @throws ShopifyApiException
+ */
+function shopify_categories_getMetaFieldsByCollectionID($collectionID)
+{
+    //initialize the client object
+    $client = shopify_api_client();
+    $results = $client->call('GET', '/admin/metafields.json', array('limit' => 50,
+        'metafield[owner_id]' => $collectionID,
+        'metafield[owner_resource]' => 'collection',
+        'fields' => 'key,value,id'));
 
+
+    return $results;
+}
+
+function shopify_categories_getCustomCollectionCount()
+{
+    //initialize the client object
+    $client = shopify_api_client();
+    $count = $client->call('GET', '/admin/custom_collections/count.json');
+
+    return $count;
+}
+
+
+function shopify_categories_getSmartCollectionCount()
+{
+    //initialize the client object
+    $client = shopify_api_client();
+    $count = $client->call('GET', '/admin/smart_collections/count.json');
+
+    return $count;
+}
 ?>
